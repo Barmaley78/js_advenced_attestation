@@ -1,5 +1,7 @@
 "use strict";
 const dataProducts = JSON.parse(dataProductsJson);
+const cartContainer = document.querySelectorAll('.cart');
+console.log(cartContainer);
 
 let procuctTemplate = document.querySelector('#productTemplate .product');
 let cartTemplate = document.querySelector('#cartTemplate .product__cart');
@@ -12,7 +14,7 @@ let cart = document.querySelector('.cart');
 dataProducts.forEach(element => {
     let product = procuctTemplate.cloneNode(true);
     const addition = document.querySelector(".product__toCart");
-    console.log(addition);
+
     product.id = element.productID;
     product.querySelector(".product__image img").src = element.image;
     product.querySelector(".product__info .product__title").textContent = element.title;
@@ -22,7 +24,6 @@ dataProducts.forEach(element => {
     product.querySelector(".product__toCart .product__toCartBtn").textContent = element.btnText;
     cont.appendChild(product);
 
-    const cartContainer = document.querySelectorAll('.product__cart');
     if (cartContainer.length != 0) {
         if (cart.textContent === "") {
             let cartHeader = document.createElement("p");
@@ -55,6 +56,6 @@ function addProductToCart(element, addition) {
             if (cartSize === 0) { cart.style = "display: none;" };
             console.log(cartSize);
         });
-
+        cart.style = "display: block";
     });
 };
